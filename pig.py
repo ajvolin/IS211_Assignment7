@@ -248,10 +248,11 @@ class Game(object):
         # win the game, or hold.
         while active_turn and not game_over:
             # Request the current player's desired action
-            action = input("Enter 'r' to roll the die, or 'h' to hold. What you you like to do? ")
+            action = input(
+                "Enter 'r' to roll the die, or 'h' to hold. What you you like to do? ")
 
             # Player chose to roll
-            if (action == "r"):
+            if action == "r":
                 # Roll the die and add to roll total for the turn
                 roll = self.__die.roll()
                 rolls += 1
@@ -259,7 +260,7 @@ class Game(object):
                 # score and commit the current rolls count
                 # to the player's Player object, and exit
                 # the loop.
-                if (roll == 1):
+                if roll == 1:
                     current_score = 0
                     player.commit_score(current_score, rolls)
                     print("Ouch, {} you rolled a {} and lost all points you accumulated during this turn. Your score for this turn is {}. Your total score is {}.".format(
@@ -272,10 +273,10 @@ class Game(object):
                 # next action
                 else:
                     current_score += roll
-                    if ((current_score + player.get_score()) >= 100):
+                    if (current_score + player.get_score()) >= 100:
                         player.commit_score(current_score, rolls)
-                        print("\n\nCongratulations {}, you rolled a {} and your total score is {}. You won the game!" \
-                            .format(player.get_name(), roll, player.get_score()))
+                        print("\n\nCongratulations {}, you rolled a {} and your total score is {}. You won the game!"
+                              .format(player.get_name(), roll, player.get_score()))
                         game_over, active_turn = True, False
                     else:
                         print("Nice {}! You rolled a {}. Your current score for this turn is {}. Your total score is {}".format(
@@ -287,7 +288,7 @@ class Game(object):
                         )
             # Player chose to hold, commit their current score and
             # roll count to their Player object and exit the loop
-            elif (action == "h"):
+            elif action == "h":
                 player.commit_score(current_score, rolls)
                 print("{}, you held. Your score for this turn is {}. Your total score is {}.".format(
                     player.get_name(), current_score, player.get_score()))
